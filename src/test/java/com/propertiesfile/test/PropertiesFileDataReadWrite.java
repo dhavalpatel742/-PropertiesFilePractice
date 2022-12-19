@@ -2,6 +2,7 @@ package com.propertiesfile.test;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Properties;
 
@@ -37,6 +38,12 @@ public class PropertiesFileDataReadWrite {
 		driver.findElement(By.id(prop.getProperty("login_id"))).sendKeys(prop.getProperty("username"));
 		driver.findElement(By.xpath(prop.getProperty("password_xpath"))).sendKeys(prop.getProperty("password"));
 		driver.findElement(By.xpath(prop.getProperty("login_button_xpath"))).click();
+		
+		prop.setProperty("close_message", "all done");
+		
+		FileOutputStream fo = new FileOutputStream("C:\\Selenium_Workspace\\PropertiesFilePractice\\src\\"
+												+"test\\java\\config.properties");
+		prop.store(fo, "close message added");
 		
 
 	}
